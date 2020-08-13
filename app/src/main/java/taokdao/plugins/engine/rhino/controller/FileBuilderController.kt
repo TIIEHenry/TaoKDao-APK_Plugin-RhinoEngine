@@ -1,19 +1,20 @@
-package taokdao.plugin.engines.rhino.controller
+package taokdao.plugins.engine.rhino.controller
 
 import taokdao.api.file.build.FileBuilderPool
 import taokdao.api.main.IMainContext
 import taokdao.api.plugin.bean.PluginManifest
-import taokdao.plugin.engines.rhino.builder.filebuilders.RhinoBuilder
-import taokdao.plugins.engine.rhino.controller.TabToolController
+import taokdao.api.plugin.entrance.BaseDynamicPluginEntrance
+import taokdao.plugins.engine.rhino.builder.filebuilders.RhinoBuilder
 
-class FileBuilderController(private val tabToolController: TabToolController) {
+class FileBuilderController(private val tabToolController: TabToolController) :
+    BaseDynamicPluginEntrance() {
     private lateinit var rhinoBuilder: RhinoBuilder
-    fun onInit(iMainContext: IMainContext, pluginManifest: PluginManifest) {
-        rhinoBuilder = RhinoBuilder(iMainContext,tabToolController)
+    override fun onInit(iMainContext: IMainContext, pluginManifest: PluginManifest) {
+        rhinoBuilder = RhinoBuilder(iMainContext, tabToolController)
         FileBuilderPool.getInstance().add(rhinoBuilder)
     }
 
-    fun onDestroy(iMainContext: IMainContext, pluginManifest: PluginManifest) {
+    override fun onDestroy(iMainContext: IMainContext, pluginManifest: PluginManifest) {
         FileBuilderPool.getInstance().add(rhinoBuilder)
     }
 }

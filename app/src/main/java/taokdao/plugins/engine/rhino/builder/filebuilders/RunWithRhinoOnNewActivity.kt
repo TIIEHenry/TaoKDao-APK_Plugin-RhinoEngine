@@ -1,4 +1,4 @@
-package taokdao.plugin.engines.rhino.builder.filebuilders
+package taokdao.plugins.engine.rhino.builder.filebuilders
 
 import android.content.ComponentName
 import android.content.Intent
@@ -10,6 +10,7 @@ import taokdao.api.main.IMainContext
 import tiiehenry.script.app.rhino.RhinoActivity
 import tiiehenry.script.engine.android.ScriptContextConst
 import java.io.File
+
 @Keep
 class RunWithRhinoOnNewActivity : IBuildOption<File> {
     override fun onBuild(main: IMainContext, config: File): Boolean {
@@ -41,10 +42,11 @@ class RunWithRhinoOnNewActivity : IBuildOption<File> {
 
 
     fun startActivity(main: IMainContext, config: File): Boolean {
-        val theme = "Packages.taokdao.plugin.engines.rhino.R.style.Theme_AppCompat" +if (main.themeManager.shouldDark())
-            ""
-        else
-            "_Light"
+        val theme =
+            "Packages.taokdao.plugin.engines.rhino.R.style.Theme_AppCompat" + if (main.themeManager.shouldDark())
+                ""
+            else
+                "_Light"
         try {
             main.startActivity(Intent(Intent.ACTION_VIEW).apply {
                 component =

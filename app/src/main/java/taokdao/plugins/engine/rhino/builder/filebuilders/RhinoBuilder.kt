@@ -1,10 +1,10 @@
-package taokdao.plugin.engines.rhino.builder.filebuilders
+package taokdao.plugins.engine.rhino.builder.filebuilders
 
 
 import taokdao.api.builder.IBuildOption
 import taokdao.api.file.build.IFileBuilder
 import taokdao.api.main.IMainContext
-import taokdao.plugins.engine.rhino.AConstant
+import taokdao.plugins.engine.rhino.PluginConstant
 import taokdao.plugins.engine.rhino.controller.TabToolController
 import java.io.File
 
@@ -12,7 +12,7 @@ class RhinoBuilder(
     main: IMainContext,
     private val tabToolController: TabToolController
 ) : IFileBuilder {
-    override fun id() = AConstant.FileBuilder.RHINO_RUNNER
+    override fun id() = PluginConstant.FileBuilder.RHINO_RUNNER
     override fun getLabel(): String {
         return "Rhino Runner"
     }

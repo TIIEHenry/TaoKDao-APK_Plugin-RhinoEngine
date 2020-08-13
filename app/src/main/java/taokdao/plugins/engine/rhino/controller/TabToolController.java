@@ -1,30 +1,24 @@
 package taokdao.plugins.engine.rhino.controller;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 import taokdao.api.main.IMainContext;
 import taokdao.api.plugin.bean.PluginManifest;
-import taokdao.api.ui.window.tabtool.ITabToolWindow;
-import taokdao.plugin.engines.rhino.tabtool.RhinoTabTool;
+import taokdao.api.plugin.entrance.BaseDynamicPluginEntrance;
+import taokdao.plugins.engine.rhino.tabtool.RhinoTabTool;
 
-public class TabToolController {
-    private Context pluginContext;
+public class TabToolController extends BaseDynamicPluginEntrance {
     public RhinoTabTool rhinoTabTool;
 
-    public void onAttach(@NonNull Context context) {
-        pluginContext = context;
-    }
-
-    public void onInit(@NonNull final IMainContext iMainContext, final PluginManifest pluginManifest) {
+    public void onInit(@NonNull final IMainContext iMainContext, @NotNull final PluginManifest pluginManifest) {
         rhinoTabTool = new RhinoTabTool(pluginContext, iMainContext);
 
         iMainContext.getTabToolWindow().add(rhinoTabTool, false);
     }
 
-    public void onDestroy(@NonNull IMainContext iMainContext, PluginManifest pluginManifest) {
-        ITabToolWindow window = iMainContext.getTabToolWindow();
-        boolean removed = window.remove(rhinoTabTool);
+    public void onDestroy(@NonNull IMainContext iMainContext, @NotNull PluginManifest pluginManifest) {
+        boolean removed = iMainContext.getTabToolWindow().remove(rhinoTabTool);
     }
 }

@@ -1,15 +1,14 @@
-package taokdao.plugin.engines.rhino.engine
+package taokdao.plugins.engine.rhino.engine
 
 
 import dalvik.system.DexClassLoader
 import taokdao.api.data.bean.Properties
-import taokdao.api.internal.InnerIdentifier
 import taokdao.api.main.IMainContext
 import taokdao.api.plugin.bean.Plugin
 import taokdao.api.plugin.bean.PluginActions
 import taokdao.api.plugin.bridge.invoke.IInvokeCallback
 import taokdao.api.plugin.engine.wrapped.PluginEngine
-import taokdao.plugins.engine.rhino.AConstant
+import taokdao.plugins.engine.rhino.PluginConstant
 import tiiehenry.script.rhino.RhinoEngine
 import tiiehenry.script.rhino.RhinoEngineFactory
 import tiiehenry.script.wrapper.engine.ScriptEngineManager
@@ -19,7 +18,7 @@ open class RhinoPluginEngine(
     private val main: IMainContext,
     private val pluginDir: File
 ) :
-    PluginEngine(Properties(AConstant.PluginEngine.RHINO, "Rhino")) {
+    PluginEngine(Properties(PluginConstant.PluginEngine.RHINO, "Rhino")) {
 
     private lateinit var pluginDexLoader: PluginDexLoader
     private val pluginEnvList = HashMap<Plugin, RhinoEngine>()
@@ -40,8 +39,14 @@ open class RhinoPluginEngine(
         }
     }
 
-    override fun invokePlugin(plugin: Plugin, method: String, params: String?, invokeCallback: IInvokeCallback?): String? {
-        return getPluginModuleEnv(plugin)?.funcBridge?.get("onInvoke")?.call(main, plugin.manifest,method, params,invokeCallback)?.getString()
+    override fun invokePlugin(
+        plugin: Plugin,
+        method: String,
+        params: String?,
+        invokeCallback: IInvokeCallback?
+    ): String? {
+        return getPluginModuleEnv(plugin)?.funcBridge?.get("onInvoke")
+            ?.call(main, plugin.manifest, method, params, invokeCallback)?.getString()
     }
 
     override fun callPluginAction(plugin: Plugin, action: PluginActions) {

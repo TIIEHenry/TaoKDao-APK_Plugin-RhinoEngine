@@ -9,21 +9,20 @@ import androidx.annotation.NonNull;
 import taokdao.api.main.IMainContext;
 import taokdao.api.plugin.bean.PluginManifest;
 import taokdao.api.plugin.entrance.BaseDynamicPluginEntrance;
-import taokdao.api.plugin.entrance.IDynamicPluginEntrance;
-import taokdao.plugin.engines.rhino.controller.EngineController;
-import taokdao.plugin.engines.rhino.controller.FileBuilderController;
-import taokdao.plugin.engines.rhino.controller.ProjectTemplateController;
+import taokdao.plugins.engine.rhino.controller.EngineController;
+import taokdao.plugins.engine.rhino.controller.FileBuilderController;
 import taokdao.plugins.engine.rhino.controller.ProjectBuilderController;
+import taokdao.plugins.engine.rhino.controller.ProjectTemplateController;
 import taokdao.plugins.engine.rhino.controller.TabToolController;
 
 @Keep
 public class DynamicEntrance extends BaseDynamicPluginEntrance {
 
-    private EngineController engineController=new EngineController();
-    private ProjectTemplateController projectTemplateController=new ProjectTemplateController();
-    private TabToolController tabToolController=new TabToolController();
-    private FileBuilderController fileBuilderController=new FileBuilderController(tabToolController);
-    private ProjectBuilderController projectBuilderController=new ProjectBuilderController(tabToolController);
+    private EngineController engineController = new EngineController();
+    private ProjectTemplateController projectTemplateController = new ProjectTemplateController();
+    private TabToolController tabToolController = new TabToolController();
+    private FileBuilderController fileBuilderController = new FileBuilderController(tabToolController);
+    private ProjectBuilderController projectBuilderController = new ProjectBuilderController(tabToolController);
 
     @Override
     public void onAttach(@NonNull Context pluginContext) {
@@ -57,10 +56,10 @@ public class DynamicEntrance extends BaseDynamicPluginEntrance {
 
     @Override
     public void onCall(@NonNull IMainContext iMainContext, @NonNull PluginManifest pluginManifest) {
-        boolean handled=tryStartActivity(iMainContext,"com.androlua");
+        boolean handled = tryStartActivity(iMainContext, "com.androlua");
         if (handled)
             return;
-        handled=tryStartActivity(iMainContext,"com.androlub");
+        handled = tryStartActivity(iMainContext, "com.androlub");
         if (handled)
             return;
         iMainContext.send("Please Install AndroLua+");

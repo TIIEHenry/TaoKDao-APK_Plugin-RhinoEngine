@@ -1,4 +1,4 @@
-package taokdao.plugin.engines.rhino.builder.projectbuilders
+package taokdao.plugins.engine.rhino.builder.projectbuilders
 
 
 import org.mozilla.javascript.Function
@@ -8,7 +8,7 @@ import taokdao.api.main.IMainContext
 import taokdao.api.project.bean.Project
 import taokdao.api.project.build.IProjectBuilder
 import taokdao.api.ui.progressbar.ProgressBarSet
-import taokdao.plugin.engines.rhino.engine.RhinoPluginEngine
+import taokdao.plugins.engine.rhino.engine.RhinoPluginEngine
 import tiiehenry.script.rhino.RhinoEngine
 import tiiehenry.script.rhino.RhinoEngineFactory
 import tiiehenry.script.rhino.lang.RhinoFunction

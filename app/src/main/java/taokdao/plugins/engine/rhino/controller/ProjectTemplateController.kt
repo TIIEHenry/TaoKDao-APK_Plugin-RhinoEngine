@@ -1,33 +1,29 @@
-package taokdao.plugin.engines.rhino.controller
+package taokdao.plugins.engine.rhino.controller
 
-import android.content.Context
 import taokdao.api.data.bean.Properties
 import taokdao.api.main.IMainContext
 import taokdao.api.main.action.MainAction
 import taokdao.api.plugin.bean.PluginManifest
+import taokdao.api.plugin.entrance.BaseDynamicPluginEntrance
 import taokdao.api.template.project.ProjectTemplatePool
 import taokdao.api.template.project.wrapped.ProjectTemplate
-import taokdao.plugins.engine.rhino.AConstant
+import taokdao.plugins.engine.rhino.PluginConstant
 import taokdao.plugins.engine.rhino.R
+import taokdao.plugins.setup.io.Filej
 import tiiehenry.android.ui.dialogs.api.callback.InputCallback
 import tiiehenry.android.ui.dialogs.api.strategy.Dialogs
-import tiiehenry.io.Filej
 import java.io.File
 import java.io.IOException
 
-class ProjectTemplateController {
+class ProjectTemplateController: BaseDynamicPluginEntrance() {
 
     private lateinit var projectTemplate: ProjectTemplate
-    private lateinit var pluginContext: Context
 
-    fun onAttach(pluginContext: Context) {
-        this.pluginContext = pluginContext
-    }
 
-    fun onInit(iMainContext: IMainContext, pluginManifest: PluginManifest) {
+    override fun onInit(iMainContext: IMainContext, pluginManifest: PluginManifest) {
         projectTemplate = ProjectTemplate(
             Properties(
-                AConstant.Project_Template_ID,
+                PluginConstant.Project_Template_ID,
                 "AndroLua+ Project",
                 "project for AndroLua+"
             ),
@@ -44,7 +40,7 @@ class ProjectTemplateController {
 //        ProjectTemplatePool.getInstance().add(projectTemplate)
     }
 
-    fun onDestroy(iMainContext: IMainContext, pluginManifest: PluginManifest) {
+    override fun onDestroy(iMainContext: IMainContext, pluginManifest: PluginManifest) {
         ProjectTemplatePool.getInstance().remove(projectTemplate)
     }
 
