@@ -1,0 +1,37 @@
+{
+  "id": "taokdao.plugins.engine.rhino",
+  "type": "TYPE_ENGINE",
+  "api":"1.0",
+  "version": {
+    "code": 20200728,
+    "name": "2020.07.28",
+    "downgrade": true
+  },
+  "information": {
+    "author": "TIIEHenry",
+    "label": "RhinoEngine",
+    "icon": "apk",
+    "description": "提供Rhino插件支持、js(Rhino)脚本运行支持",
+    "tags": ["Js","Rhino","Engine"],
+    "readme": "README.MD"
+  },
+  "languages": [
+    "zh-CN"
+  ],
+  "visibility": {
+    "type": "1",
+    "contents": [
+
+    ],
+    "suffixes": [
+
+    ]
+  },
+  "engine": {
+    "id": "taokdao.plugins.engine.apk",
+    "entrance": "/.DynamicEntrance",
+    "parameters": [
+      "installed"
+    ]
+  }
+}

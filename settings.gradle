@@ -1,0 +1,10 @@
+rootProject.name = 'RhinoEngine'
+include ':app'
+
+includeBuild '../TaoKDao-API'
+//includeBuild '../TaoKDao-Plugin-Setup'
+
+
+includeBuild '../../ScriptWrapper/ScriptWrapper'
+includeBuild '../../ScriptWrapper/ScriptWrapperCollection'
+includeBuild '../../ScriptWrapper/ScriptWrapperApp'
