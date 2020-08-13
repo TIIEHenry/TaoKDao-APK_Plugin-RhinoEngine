@@ -1,26 +1,17 @@
-# TaoKDao-Plugin
- TaoKDao Plugins Develop
+# TaoKDao-APK_Plugin-RhinoEngine
+
+ TaoKDao插件 提供运行js、Rhino插件引擎支持
 
 
 
-### Usage
+### 使用方法
 
-Clone Current Repo: https://github.com/TIIEHenry/TaoKDao-DynamicLoaderPlugin.git
+参照 [TaoKDao-API](https://github.com/TIIEHenry/TaoKDao-API)
 
-clone the follow repos :
+基于[TaoKDao-Plugin-Setup](https://github.com/TIIEHenry/TaoKDao-Plugin-Setup)
 
-TaoKDao API: https://github.com/TIIEHenry/TaoKDao-API.git
+基于[ScriptWrapper](https://github.com/TIIEHenry/ScriptWrapper)
 
-Dialogs API: https://github.com/TIIEHenry/Android-Dialogs-Interface.git
+基于[ScriptWrapperCollection](https://github.com/TIIEHenry/ScriptWrapperCollection)
 
-Plugin use: https://github.com/TIIEHenry/Nota-Toolkit
-
-Plugin use: https://github.com/TIIEHenry/MarkDownViewer.git
-
- then
-
-A: use includeBuild 
-
-or
-
-B: open each project and run gradle task upload uploadArchives to publish repo to mavenLocal
+基于[ScriptWrapperApp](https://github.com/TIIEHenry/ScriptWrapperApp.git)
