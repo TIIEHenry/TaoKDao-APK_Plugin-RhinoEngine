@@ -43,14 +43,13 @@ class RunWithRhinoOnNewActivity : IBuildOption<File> {
 
     fun startActivity(main: IMainContext, config: File): Boolean {
         val theme =
-            "Packages.taokdao.plugin.engines.rhino.R.style.Theme_AppCompat" + if (main.themeManager.shouldDark())
+            "Packages.taokdao.plugins.engine.rhino.R.style.Theme_AppCompat" + if (main.themeManager.shouldDark())
                 ""
             else
                 "_Light"
         try {
             main.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                component =
-                    ComponentName("taokdao.plugin.engines.rhino", RhinoActivity::class.java.name)
+                component =ComponentName("taokdao.plugins.engine.rhino", RhinoActivity::class.java.name)
 //                putExtra(ScriptContextConst.ENGINE_FACTORY_NAME,"Rhino")
                 putExtra(
                     ScriptContextConst.Companion.INTENT.SCRIPT_BEFORE_DATA,
