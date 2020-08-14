@@ -8,6 +8,7 @@ import taokdao.api.main.IMainContext
 import taokdao.api.project.bean.Project
 import taokdao.api.project.build.IProjectBuilder
 import taokdao.api.ui.progressbar.ProgressBarSet
+import taokdao.plugins.engine.rhino.PluginConstant
 import taokdao.plugins.engine.rhino.engine.RhinoPluginEngine
 import tiiehenry.script.rhino.RhinoEngine
 import tiiehenry.script.rhino.RhinoEngineFactory
@@ -17,10 +18,15 @@ import java.io.File
 class ScriptProjectTaskBuilder(private val rhinoPluginEngine: RhinoPluginEngine) : IProjectBuilder {
 
     override fun id(): String {
-        return "rhinoScript"
+        return PluginConstant.ProjectBuilder.RHINO_SCRIPT_TASK
     }
 
-    private val run = BuildOption<Project>(Properties("run", "run")) { main, config, _ ->
+    private val run = BuildOption<Project>(
+        Properties(
+            PluginConstant.ProjectBuilder.RHINO_SCRIPT_TASK_RUN,
+            "run"
+        )
+    ) { main, config, _ ->
         ProgressBarSet.BOTTOM_HORIZONTAL.addUser(config.projectDir.absolutePath)
         try {
             callScriptTask(main, config, "runProject")
@@ -33,7 +39,12 @@ class ScriptProjectTaskBuilder(private val rhinoPluginEngine: RhinoPluginEngine)
         true
     }
 
-    private val build = BuildOption<Project>(Properties("build", "build")) { main, config, _ ->
+    private val build = BuildOption<Project>(
+        Properties(
+            PluginConstant.ProjectBuilder.RHINO_SCRIPT_TASK_BUILD,
+            "build"
+        )
+    ) { main, config, _ ->
         ProgressBarSet.BOTTOM_HORIZONTAL.addUser(config.projectDir.absolutePath)
         try {
             callScriptTask(main, config, "buildProject")
@@ -82,7 +93,7 @@ class ScriptProjectTaskBuilder(private val rhinoPluginEngine: RhinoPluginEngine)
             requirer.findPathList.add(rhinoPluginEngine.getSourceDir())
 
             requirer.require("apply")
-            stringEvaluator.evalSafely("var api=Packages.tiiehenry.taokdao.api;")
+            stringEvaluator.evalSafely("var api=Packages.taokdao.api;")
             try {
                 fileEvaluator.eval(configFile)
             } catch (e: Exception) {
