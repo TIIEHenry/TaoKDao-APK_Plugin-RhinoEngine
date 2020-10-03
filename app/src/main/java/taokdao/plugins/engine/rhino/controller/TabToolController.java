@@ -15,10 +15,10 @@ public class TabToolController extends BaseDynamicPluginEntrance {
     public void onInit(@NonNull final IMainContext iMainContext, @NotNull final PluginManifest pluginManifest) {
         rhinoTabTool = new RhinoTabTool(pluginContext, iMainContext);
 
-        iMainContext.getTabToolWindow().add(rhinoTabTool, false);
+        iMainContext.getToolPageWindow().add(rhinoTabTool, false);
     }
 
     public void onDestroy(@NonNull IMainContext iMainContext, @NotNull PluginManifest pluginManifest) {
-        boolean removed = iMainContext.getTabToolWindow().remove(rhinoTabTool);
+        boolean removed = iMainContext.getToolPageWindow().remove(rhinoTabTool);
     }
 }
